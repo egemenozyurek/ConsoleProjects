@@ -36,7 +36,7 @@ namespace ContactAppProject1 {
                     while (flag) {
                         Console.Write ("Lütfen telefon numarasını '0xxx-xxx-xx-xx(0555-555-55-55)' formatına uygun olarak giriniz     :");
                         phonenumber = Console.ReadLine ();
-                        phoneNumberCheck = Person.PhoneFormatControl (phonenumber);
+                        phoneNumberCheck = Persons.PhoneFormatControl (phonenumber);
                         if (phoneNumberCheck == true) {
                             break;
                         } else {
@@ -44,12 +44,12 @@ namespace ContactAppProject1 {
                         }
                     }
 
-                    bool success = Person.AddPerson (name, surname, phonenumber);
+                    bool success = Persons.AddPerson (name, surname, phonenumber);
                     while (flag) {
 
                         if (success) {
                             Console.WriteLine ("Eklediğiniz kişi rehberinize başarıyla kaydedilmiştir. Lütfen bir seçim yapın:");
-                            Person.GetList ();
+                            Persons.GetList ();
                             Console.WriteLine ();
                             Console.WriteLine ("--------------");
                             Console.WriteLine ("* Ana menüye dönmek için: (6)");
@@ -74,14 +74,14 @@ namespace ContactAppProject1 {
                         string name = Console.ReadLine ();
                         bool checkRemove;
                         char checkLetter;
-                        Person person = Person.GetPerson (name);
+                        Persons person = Persons.GetPerson (name);
                         if (person != null) {
                             Console.Write (person.Name + " isimli kişi rehberden silinmek üzere, onaylıyor musunuz? (y/n): ");
                             checkLetter = char.Parse (Console.ReadLine ());
                             if (checkLetter == 'y') {
-                                checkRemove = Person.Remove (person);
+                                checkRemove = Persons.Remove (person);
                                 if (checkRemove) {
-                                    Person.GetList ();
+                                    Persons.GetList ();
                                     Console.WriteLine ("İşlem başarılı bir şekilde gerçekleştirilmiştir.\n");
                                     Console.WriteLine ("* Ana menüye dönmek için: (6)");
                                     Console.WriteLine ("* Programdan çıkmak için: (0)");
@@ -128,8 +128,8 @@ namespace ContactAppProject1 {
                         Console.WriteLine ("-------- Varolan Numarayı Güncelleme --------\n");
                         Console.Write ("Lütfen numarasını güncellemek istediğiniz kişinin adını ya da soyadını giriniz:");
                         string name = Console.ReadLine ();
-                        Person person = Person.GetPerson (name);
-                        Person updatePerson;
+                        Persons person = Persons.GetPerson (name);
+                        Persons updatePerson;
                         if (person != null) {
                             Console.WriteLine ("Güncellenmek istenen Kişinin Bilgileri:\n");
                             Console.WriteLine ("İsim: {0}", person.Name);
@@ -142,11 +142,11 @@ namespace ContactAppProject1 {
                             string surname = Console.ReadLine ();
                             Console.Write ("Telefon Numarası: ");
                             string phone = Console.ReadLine ();
-                            updatePerson = Person.Update (firstname, surname, phone, person);
+                            updatePerson = Persons.Update (firstname, surname, phone, person);
                             if (updatePerson != null) {
                                 Console.WriteLine ("İşlem başarılı bir şekilde gerçekleştirilmiştir.\n");
                                 Console.WriteLine ("--------------");
-                                Person.GetList ();
+                                Persons.GetList ();
                                 Console.WriteLine ("* Ana menüye dönmek için: (6)");
                                 Console.WriteLine ("* Programdan çıkmak için: (0)");
                                 Console.Write ("Seçim: ");
@@ -189,9 +189,9 @@ namespace ContactAppProject1 {
                     int search = 0;
                     bool succesSearchChoose = int.TryParse (Console.ReadLine (), out search);
                     if (search == 1 && succesSearchChoose) {
-                        Person.GetListForAlphabet (search);
+                        Persons.GetListForAlphabet (search);
                     } else if (search == 2 && succesSearchChoose) {
-                        Person.GetListForAlphabet (search);
+                        Persons.GetListForAlphabet (search);
                     }
                 } else if (succesChoose && chooseMenu == 5) {
                     while (flag) {
@@ -207,7 +207,7 @@ namespace ContactAppProject1 {
                         if (search == 1 && succesSearchChoose) {
                             Console.Write ("Lütfen bulmak istediğiniz ismi ya da soyismi yazınız:");
                             searchNameorSurname = Console.ReadLine ();
-                            List<Person> personlist = Person.GetListforNameorSurname (searchNameorSurname);
+                            List<Persons> personlist = Persons.GetListforNameorSurname (searchNameorSurname);
                             if (personlist.Count > 0) {
                                 Console.WriteLine ("Arama Sonuçlarınız:");
                                 Console.WriteLine ("**********************************************\n");
@@ -244,9 +244,9 @@ namespace ContactAppProject1 {
                             while (flag) {
                                 Console.Write ("Lütfen bulmak istediğiniz telefon numarasını '0xxx-xxx-xx-xx(0555-555-55-55)' formatına uygun olarak giriniz     :");
                                 phonenumber = Console.ReadLine ();
-                                phoneNumberCheck = Person.PhoneFormatControl (phonenumber);
+                                phoneNumberCheck = Persons.PhoneFormatControl (phonenumber);
                                 if (phoneNumberCheck == true) {
-                                    List<Person> personlist = Person.GetListforNumber (phonenumber);
+                                    List<Persons> personlist = Persons.GetListforNumber (phonenumber);
                                     if (personlist.Count > 0) {
                                         Console.WriteLine ("Arama Sonuçlarınız:");
                                         Console.WriteLine ("**********************************************\n");

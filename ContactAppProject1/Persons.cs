@@ -2,19 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ContactAppProject1 {
     public class Persons {
-        static List<Person> _personlist;
+        static List<Persons> _personlist;
 
-        static Person () {
-            _personlist = new List<Person> {
-                new Person { Name = "Veronica", Surname = "Velazquez", PhoneNumber = "0641-272-79-21" },
-                new Person { Name = "Jermaine", Surname = "Mcintosh", PhoneNumber = "0369-638-40-01" },
-                new Person { Name = "Kenyon", Surname = "Puckett", PhoneNumber = "0441-675-38-76" },
-                new Person { Name = "Camden", Surname = "Bradford", PhoneNumber = "0963-275-62-87" },
-                new Person { Name = "Curran", Surname = "Soto", PhoneNumber = "0799-446-05-04" }
+        static Persons () {
+            _personlist = new List<Persons> {
+                new Persons { Name = "Veronica", Surname = "Velazquez", PhoneNumber = "0641-272-79-21" },
+                new Persons { Name = "Jermaine", Surname = "Mcintosh", PhoneNumber = "0369-638-40-01" },
+                new Persons { Name = "Kenyon", Surname = "Puckett", PhoneNumber = "0441-675-38-76" },
+                new Persons { Name = "Camden", Surname = "Bradford", PhoneNumber = "0963-275-62-87" },
+                new Persons { Name = "Curran", Surname = "Soto", PhoneNumber = "0799-446-05-04" }
             };
         }
 
@@ -26,7 +27,7 @@ namespace ContactAppProject1 {
 
         public static bool AddPerson (string name, string surname, string phoneNumber) {
             if (!string.IsNullOrWhiteSpace (name) && (!string.IsNullOrWhiteSpace (surname) && (!string.IsNullOrWhiteSpace (phoneNumber)))) {
-                Person person = new Person ();
+                Persons person = new Persons ();
                 person.Name = name;
                 person.Surname = surname;
                 person.PhoneNumber = phoneNumber;
@@ -36,11 +37,11 @@ namespace ContactAppProject1 {
                 return false;
         }
 
-        public static List<Person> GetAll () {
+        public static List<Persons> GetAll () {
             return _personlist;
         }
 
-        public static bool Remove (Person item) {
+        public static bool Remove (Persons item) {
             if (item != null) {
                 _personlist.Remove (item);
                 return true;
@@ -49,7 +50,7 @@ namespace ContactAppProject1 {
 
         }
 
-        public static Person Update (string name, string surname, string phonenumber, Person person) {
+        public static Persons Update (string name, string surname, string phonenumber, Persons person) {
             bool success = PhoneFormatControl (phonenumber);
             if (!string.IsNullOrWhiteSpace (name) && (!string.IsNullOrWhiteSpace (surname) && (!string.IsNullOrWhiteSpace (phonenumber))) && (person != null) && (success)) {
                 person.Name = name;
@@ -60,8 +61,8 @@ namespace ContactAppProject1 {
                 return null;
         }
 
-        public static Person GetPerson (string name) {
-            foreach (var item in Person.GetAll ()) {
+        public static Persons GetPerson (string name) {
+            foreach (var item in Persons.GetAll ()) {
                 if (name == item.Name || name == item.Surname)
                     return item;
             }
@@ -71,7 +72,7 @@ namespace ContactAppProject1 {
 
         public static void GetList () {
             Console.WriteLine ("------- Kişi Listesi -------\n");
-            foreach (var item in Person.GetAll ()) {
+            foreach (var item in Persons.GetAll ()) {
                 Console.WriteLine ("İsim: " + item.Name);
                 Console.WriteLine ("Soyisim: " + item.Surname);
                 Console.WriteLine ("Numara: " + item.PhoneNumber);
@@ -79,9 +80,9 @@ namespace ContactAppProject1 {
             }
         }
 
-        public static List<Person> GetListforNameorSurname (string nameorsurname) {
-            List<Person> personlist = new List<Person> ();
-            foreach (var item in Person.GetAll ()) {
+        public static List<Persons> GetListforNameorSurname (string nameorsurname) {
+            List<Persons> personlist = new List<Persons> ();
+            foreach (var item in Persons.GetAll ()) {
                 if (nameorsurname == item.Name || nameorsurname == item.Surname) {
                     personlist.Add (item);
                 }
@@ -90,7 +91,7 @@ namespace ContactAppProject1 {
         }
 
         public static void GetListForAlphabet (int alphabetType) {
-            List<Person> sortedList = Person.GetAll ().OrderBy (n => n.Name).ToList ();
+            List<Persons> sortedList = Persons.GetAll ().OrderBy (n => n.Name).ToList ();
 
             if (alphabetType == 1) {
                 foreach (var item in sortedList) {
@@ -109,9 +110,9 @@ namespace ContactAppProject1 {
                 }
             }
         }
-        public static List<Person> GetListforNumber (string searchPhoneNumber) {
-            List<Person> personlist = new List<Person> ();
-            foreach (var item in Person.GetAll ()) {
+        public static List<Persons> GetListforNumber (string searchPhoneNumber) {
+            List<Persons> personlist = new List<Persons> ();
+            foreach (var item in Persons.GetAll ()) {
                 if (searchPhoneNumber == item.PhoneNumber) {
                     personlist.Add (item);
                 }
