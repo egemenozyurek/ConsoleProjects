@@ -11,5 +11,9 @@ namespace Oop {
         protected void Bosaltim () {
             Console.WriteLine ("Canlılar boşaltım yapar.");
         }
+
+        public virtual void UyaranlaraTepki () {
+            Console.WriteLine ("Canlılara Tepki");
+        }
     }
 }

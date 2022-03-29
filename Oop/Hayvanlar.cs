@@ -8,6 +8,11 @@ namespace Oop {
         public void Avlanmak () {
             Console.WriteLine ("Hayvanlar avlanır");
         }
+
+        public override void UyaranlaraTepki () {
+            base.UyaranlaraTepki ();
+            Console.WriteLine ("Hayvanlar temasa tepki verir.");
+        }
     }
 
     public class Sürüngenler : Hayvanlar {
@@ -28,6 +33,7 @@ namespace Oop {
             base.Beslenme ();
             base.Bosaltim ();
             base.Solunum ();
+            base.UyaranlaraTepki ();
         }
         public void Ucmak () {
             Console.WriteLine ("Hayat kısa kuşlar uçuyor.");
